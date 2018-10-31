@@ -44,6 +44,8 @@ In order to run these scripts, you'll need the following libraries.
     At the end of all this, you should have a directory structure that looks like this. Make sure you rename the folders and file names if yours are different. 
 
     ![](Images/DirectoryStructure.png)
+	
+* **WhatsApp Data**: Make sure you have a cell phone and put it in the US date-format if it is not already (this will be important later when you parse the log file to .csv). You can not use whatsApp web for this purpose. Open the chat you want to send, tap the menu button, tap more, then click "Email Chat". Send the email to yourself and download it to your computer. This will give you a .txt file, to parse it, we'll convert it to .cvs. To do this go to [this link](http://ocpl.com.bd/whatsapp_parser/) and enter all the text in your log file. Click export, download the csv file and simply store it in your Facebook-Messenger-Bot folder under the name "whatsapp_chats.csv".
 
 4. Now that we have all our conversation logs in a clean format, we can go ahead and create our dataset. In our directory, let's run:
     ```bash
@@ -63,7 +65,7 @@ In order to run these scripts, you'll need the following libraries.
     ```
     This will create 3 or more different files. **Seq2SeqXTrain.npy** and **Seq2SeqYTrain.npy** are the training matrices that Seq2Seq will use. Again, we save these just in case we want to make changes to our model architecture, and we don't want to recompute our training set. The last file(s) will be .ckpt files which holds our saved Seq2Seq model. Models will be saved at different time periods in the training loop. These will be used and deployed once we've created our chatbot. 
 
-7. Now that we have a saved model, let's now create our Facebook chatbot. To do so, I'd recommend following this [tutorial](https://github.com/jw84/messenger-bot-tutorial). You don't need to read anything beneath the "Customize what the bot says" section. Our Seq2Seq model will handle that part. **IMPORTANT - The tutorial will tell you to create a new folder where the Node project will lie.** Keep in mind this folder will be different from our folder. You can think of this folder as being where our data preprocessing and model training lie, while the other folder is strictly reserved for the Express app. The tutorial itself should be sufficient, but here's a summary of the steps. 
+7. Now that we have a saved model, let's now create our Facebook chatbot. To do so, I'd recommend following this [tutorial](https://github.com/jw84/messenger-bot-tutorial). You don't need to read anything beneath the "Customize what the bot says" section. Our Seq2Seq model will handle that part. **IMPORTANT - The tutorial will tell you to create a new folder where the Node project will lie.** Keep in mind this folder will be different from our folder. You can think of this folder as being where our data preprocessing and model training lie, while the other folder is strictly reserved for the Express app (EDIT: I believe you can follow the tutorial's steps inside of our folder and just create the Node project, Procfile, and index.js files in here if you want). The tutorial itself should be sufficient, but here's a summary of the steps. 
 
     - Build the server, and host on Heroku. 
     - Create a Facebook App/Page, set up the webhook, get page token, and trigger the app. 
